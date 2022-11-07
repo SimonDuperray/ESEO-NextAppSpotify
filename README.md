@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Final React Project for ESEO Course
 
-## Getting Started
+## Features to develop
+- [ ] Login System (Google Auth Provider)
+- [ ] Fetch data from API and store it into Firebase database
+- [ ] Display data from the database
+- [ ] Can update/modify data and store modifications into the database
 
-First, run the development server:
+## Technical Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Technologies we will use:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- NextJS
+- ReactJS
+- JavaScript
+- WebStorm
+- Firebase
+- REST API (API main endpoint)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## The project idea
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+The data we deal with are provided by the Spotify API. We work with data about some Albums, Tracks or Artists.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Once all the data are fetched and restructured from the Spotify API, they will be stored into the Firebase database.
 
-## Learn More
+All the data are displayed on the homepage on the app. As a connected user we can add some tracks, artists or albums to a favorite collections.
 
-To learn more about Next.js, take a look at the following resources:
+In this collection we can rename a track, an album or an artist to recognize it easier for example.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If some features must be developer in the future, they will be developed here.
