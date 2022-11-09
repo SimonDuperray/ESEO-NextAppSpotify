@@ -1,27 +1,18 @@
-import { useState } from "react";
-import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import { app } from "../firebaseConfig";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Link from "next/link";
-import { Login } from "../components/Login";
+import { getAuth } from "firebase/auth";
 
-function HomePage() {
-    const [user, setUser] = useState({});
-
-    const googleProvider = new GoogleAuthProvider();
-    const auth = getAuth(app);
-    const googleSignUp = () => {
-        signInWithPopup(auth, googleProvider)
+const Home = () => {
+    const signOut = () => {
+        getAuth().signOut()
             .then((response) => {
                 console.log(response);
-                setUser(response.user);
             })
             .catch((err) => {
-                console.error(err.code);
+                console.error(err);
             })
     }
-
     return (
         <div className={styles.container}>
             <Head>
@@ -35,13 +26,7 @@ function HomePage() {
                     Welcome to <Link href="/">Spotify Analytics App!</Link>
                 </h1>
 
-                {
-                    user.email ? (
-                        <div><h2>Welcome {user.displayName}</h2></div>
-                    ) : (
-                        <div><button onClick={ googleSignUp }>Sign Up with Google</button></div>
-                    )
-                }
+                <button onClick={ signOut }>Sign Out</button>
 
                 <p className={styles.description}>
                     Get started by <Link href="/login" style={{textDecoration: "underline"}}>login you</Link>.
@@ -62,4 +47,4 @@ function HomePage() {
     )
 }
 
-export default HomePage;
+export default Home;

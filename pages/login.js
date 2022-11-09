@@ -1,11 +1,7 @@
-import styles from '../styles/Home.module.css';
+import Login from "../components/Login";
 
 const LoginPage = () => {
-    return (
-        <div className={styles.container}>
-            <h1>Login Page</h1>
-        </div>
-    )
+    return <Login />
 };
 
 export default LoginPage;

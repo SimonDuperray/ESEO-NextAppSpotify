@@ -3,4 +3,4 @@ const artists_ids = ["63MQldklfxkjYDoUE4Tppz", "2UwqpfQtNuhBwviIC0f2ie", "3QVolf
 
 export default function handler(req, res) {
   res.status(200).json({ name: 'John Doe' })
-}
+};
