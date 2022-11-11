@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import {GoogleOutlined} from "@ant-design/icons";
 import Home from "../components/Home";
 import { getDocs, collection, getFirestore } from "firebase/firestore";
+import Link from "next/link";
 
 function HomePage() {
     const [user, setUser] = useState({});
@@ -49,10 +50,13 @@ function HomePage() {
     return (
         <div className={styles.container}>
             <header>
-                <p>Logo</p>
+                <Link href="/">Spoapp</Link>
                 {
                     user.email ? (
-                        <button onClick={ signOut }>Sign out</button>
+                        <div>
+                            <button onClick={ signOut }>Sign out</button>
+                            <a href="/add_data">Manage data</a>
+                        </div>
                     ) : (
                         <></>
                     )
