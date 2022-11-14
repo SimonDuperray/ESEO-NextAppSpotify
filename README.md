@@ -1,9 +1,9 @@
 # Final React Project for ESEO Course
 
 ## Features to develop
-- [ ] Login System (Google Auth Provider)
+- [x] Login System (Google Auth Provider)
 - [ ] Fetch data from API and store it into Firebase database
-- [ ] Display data from the database
+- [x] Display data from the database
 - [ ] Can update/modify data and store modifications into the database
 
 ## Technical Stack
