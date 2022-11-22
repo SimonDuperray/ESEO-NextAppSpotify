@@ -10,5 +10,3 @@ const clientCredentials = {
 }
 
 export const app = initializeApp(clientCredentials);
-
-// https://www.youtube.com/watch?v=u3RrUjqOg_A

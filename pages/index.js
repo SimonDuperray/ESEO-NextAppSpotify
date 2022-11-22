@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import { app } from "../firebaseConfig";
+import { app } from "../config/firebaseConfig";
 import styles from "../styles/Home.module.css";
 import {GoogleOutlined} from "@ant-design/icons";
 import Home from "../components/Home";
@@ -41,6 +41,7 @@ function HomePage() {
                 artistsList.push(doc.data());
             })
             setArtists(artistsList);
+            console.log("artists: "+artists);
         }
         fetchData()
             .catch((err) => {
@@ -65,7 +66,7 @@ function HomePage() {
             <main className={styles.main}>
                 {
                     user.email ? (
-                        <Home dpName={user.displayName} artists={artists}/>
+                        <Home uid={user.email} dpName={user.displayName} artists={artists}/>
                     ) : (
                         <div>
                             <h1 className={styles.title}>Welcome to Spotify Analytics App!</h1>

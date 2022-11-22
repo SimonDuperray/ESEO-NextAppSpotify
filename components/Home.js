@@ -1,6 +1,6 @@
 import ArtistCard from "./Artist/ArtistCard";
 import { doc, setDoc, getFirestore } from "firebase/firestore";
-import { app } from "../firebaseConfig";
+import { app } from "../config/firebaseConfig";
 
 const Home = (props) => {
 
@@ -43,6 +43,13 @@ const Home = (props) => {
         }
         //await setDoc(doc(getFirestore(app), "artists", "grhsejgvherjhejvhbej"), artistData);
     }
+
+    const addLike = (e) => {
+
+    }
+    const removeLike = (e) => {
+
+    }
     return (
         <div>
             <h1>Welcome {props.dpName}</h1>
@@ -58,6 +65,8 @@ const Home = (props) => {
                                 name={artist.name}
                                 nb_followers={artist.nb_followers}
                                 popularity={artist.popularity}
+                                liked={artist.liked}
+                                uid={props.uid}
                             />
                         )
                     })
