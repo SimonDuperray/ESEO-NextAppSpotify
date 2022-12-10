@@ -23,4 +23,9 @@ a {
     color: white;
     background: black;
   }
+  .track-card-container {
+    border: 1px solid #fff;
+    padding: 5px;
+  }
 }
+

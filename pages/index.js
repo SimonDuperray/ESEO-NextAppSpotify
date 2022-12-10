@@ -41,7 +41,6 @@ function HomePage() {
                 tracksList.push(doc.data());
             })
             setTracks(tracksList);
-            console.log("tracks: "+tracksList);
         }
         fetchData()
             .catch((err) => {
