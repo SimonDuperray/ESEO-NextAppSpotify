@@ -9,7 +9,7 @@ import Link from "next/link";
 
 function HomePage() {
     const [user, setUser] = useState({});
-    const [artists, setArtists] = useState([]);
+    const [tracks, setTracks] = useState([]);
 
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth(app);
@@ -35,13 +35,12 @@ function HomePage() {
     }
     useEffect(() => {
         const fetchData = async () => {
-            let artistsList = [];
-            const querySnapshot = await getDocs(collection(getFirestore(app), "artists"));
+            let tracksList = [];
+            const querySnapshot = await getDocs(collection(getFirestore(app), "tracks"));
             querySnapshot.forEach((doc) => {
-                artistsList.push(doc.data());
+                tracksList.push(doc.data());
             })
-            setArtists(artistsList);
-            console.log("artists: "+artists);
+            setTracks(tracksList);
         }
         fetchData()
             .catch((err) => {
@@ -51,12 +50,11 @@ function HomePage() {
     return (
         <div className={styles.container}>
             <header>
-                <Link href="/">Spoapp</Link>
+                <Link href="/">TW-Analyze</Link>
                 {
                     user.email ? (
                         <div>
                             <button onClick={ signOut }>Sign out</button>
-                            <a href="/add_data">Manage data</a>
                         </div>
                     ) : (
                         <></>
@@ -66,7 +64,7 @@ function HomePage() {
             <main className={styles.main}>
                 {
                     user.email ? (
-                        <Home uid={user.email} dpName={user.displayName} artists={artists}/>
+                        <Home uid={user.email} dpName={user.displayName} tracks={tracks}/>
                     ) : (
                         <div>
                             <h1 className={styles.title}>Welcome to Spotify Analytics App!</h1>

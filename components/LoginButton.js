@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { app } from "../config/firebaseConfig";
 
-const Login = () => {
+const LoginButton = () => {
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth(app);
     const googleSignUp = () => {
@@ -24,4 +24,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default LoginButton;
