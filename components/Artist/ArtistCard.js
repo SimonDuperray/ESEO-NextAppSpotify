@@ -2,28 +2,45 @@ import Link from "next/link";
 import { LikeFilled, LikeOutlined} from "@ant-design/icons";
 import {collection, getDocs, getFirestore} from "firebase/firestore";
 import {app} from "../../config/firebaseConfig";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const ArtistCard = (props) => {
 
     const [likes, setLikes] = useState([]);
 
-    const renderLikeBtn = () => {
-        let uid = props.uid;
-        const fetchData = async () => {
+    useEffect(() => {
+        const fetchLikes = async () => {
             let likes = [];
             const querySnapshot = await getDocs(collection(getFirestore(app), "likes"));
             querySnapshot.forEach((doc) => {
                 likes.push(doc.data());
-            })
+            });
             setLikes(likes);
-            console.log("likes: "+likes);
+
+            likes.forEach((like) => {
+                console.log(like);
+            })
         }
-        fetchData()
+        fetchLikes()
             .catch((err) => {
                 console.error(err);
             })
-        if(uid) {
+    }, []);
+
+    const renderLikeBtn = () => {
+        let uid = props.uid;
+        let isLikeFilled = false;
+        likes.forEach((like) => {
+           if(like['user_id']===uid){
+               like['liked_artists'].forEach((liked_artist) => {
+                   console.log(liked_artist, props.id);
+                   if(liked_artist==props.id){
+                       isLikeFilled = true;
+                   }
+               })
+           }
+        });
+        if(!uid) {
             return (
                 <LikeFilled />
             )

@@ -17,21 +17,7 @@ const Home = (props) => {
             albums_ids_string+=album+"%"
         });
 
-        await fetch("https://api.spotify.com/v1/artists?ids="+artists_ids_string, {
-            method: 'GET',
-            headers: {
-                Accept: "application/json",
-                ContentType: "application/json",
-                Origin: "fbdbd",
-                Authorization: "your_token"
-            }
-        })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((err) => {
-                console.error(err);
-            })
+
 
         const artistData = {
             "genres": ["french rap", "variete francaise"],
@@ -61,6 +47,7 @@ const Home = (props) => {
                         return (
                             <ArtistCard
                                 key={artist.href}
+                                id={artist.id}
                                 href={artist.href}
                                 name={artist.name}
                                 nb_followers={artist.nb_followers}
