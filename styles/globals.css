@@ -29,3 +29,6 @@ a {
   }
 }
 
+#metrics-description > ul > li {
+  padding: 20px;
+}

@@ -6,6 +6,7 @@ import {GoogleOutlined} from "@ant-design/icons";
 import Home from "../components/Home";
 import { getDocs, collection, getFirestore } from "firebase/firestore";
 import Link from "next/link";
+import {theWeekndTracks} from "../data/ids";
 
 function HomePage() {
     const [user, setUser] = useState({});
@@ -42,10 +43,10 @@ function HomePage() {
             })
             setTracks(tracksList);
         }
-        fetchData()
-            .catch((err) => {
-                console.error(err);
-            })
+         fetchData()
+             .catch((err) => {
+                 console.error(err);
+             })
     }, []);
     return (
         <div className={styles.container}>

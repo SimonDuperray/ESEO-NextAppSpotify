@@ -1,13 +1,37 @@
 import {useEffect, useState} from "react";
 import {doc, setDoc, getDocs, getFirestore, collection} from "firebase/firestore";
 import { app } from "../config/firebaseConfig";
-import MetricsAnalyzer from "./MetricsAnalyzer";
+import {
+    Chart as ChartJS,
+    BarElement,
+    CategoryScale,
+    LinearScale,
+    Tooltip,
+    Legend
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 import TrackCard from "./TrackCard";
+import Link from "next/link";
+import {theWeekndAudioFeatures} from "../data/the_weeknd_audio_features-1670683376";
+
+ChartJS.register(
+    BarElement,
+    CategoryScale,
+    LinearScale,
+    Tooltip,
+    Legend
+)
 
 const Home = (props) => {
 
     const [tracksId, setTracksId] = useState([]);
     const [audioFeatures, setAudioFeatures] = useState([]);
+    const [barData, setBarData] = useState({
+        labels: [],
+        datasets: [{
+            data: []
+        }]
+    });
 
     useEffect((fieldPath, options) => {
         // get tracks id
@@ -24,16 +48,25 @@ const Home = (props) => {
             const querySnapshot = await getDocs(collection(getFirestore(app), "the_weeknd_audio_features"));
             querySnapshot.forEach((audio_features) => {
                 audioFeaturesList.push(audio_features.data());
-                console.log(audio_features.data())
             });
             setAudioFeatures(audioFeaturesList);
+            console.log(JSON.stringify(audioFeaturesList));
             console.log("> All audio features have correctly been fetched from database.");
         };
+         fetchAudioFeatures()
+             .catch((err) => {
+                 console.log(err);
+             })
 
-        fetchAudioFeatures()
-            .catch((err) => {
-                console.log(err);
-            })
+        let data = {
+            labels: ['un', 'deux', 'trois'],
+            datasets: [{
+                label: 'Metrics evaluation',
+                data: [1, 2, 3]
+            }]
+        };
+        setBarData(data);
+        console.log(`barData: ${barData}`)
 
     }, []);
 
@@ -60,6 +93,31 @@ const Home = (props) => {
         }
     }
 
+    // TODO: Caroline - compute average values for each metric and create bar graph to render data
+    const dataChart = {
+        labels: ['energy', 'danceability'],
+        datasets: [
+            {
+                label: '12',
+                data: [1, 2],
+                backgroundColor: 'aqua',
+                borderColor: 'black',
+                borderWidth: 1
+            }
+        ]
+    };
+    const optionsChart = {};
+
+    const getCorrespondingMetrics = (trackId) => {
+        let toReturn = null;
+        for(let i = 0; i < audioFeatures.length; i++) {
+            if(audioFeatures[i]['id'] && (audioFeatures[i]['id'] == trackId)) {
+                toReturn = audioFeatures[i];
+                return toReturn;
+            }
+        }
+    }
+
     return (
         <div>
             <h1>Welcome {props.dpName}</h1>
@@ -76,14 +134,28 @@ const Home = (props) => {
                                 album={track.album}
                                 icon_url={track.icon_url}
                                 index={track.index}
+                                metrics={ getCorrespondingMetrics(track.id) }
                             />
                         )
                     })
                 }
             </section>
             <section id="ana_metrics">
+                <button>
+                    <Link href="/metricsDescription">Metrics description</Link>
+                </button>
+                <Bar
+                    data={dataChart}
+                    options={optionsChart}
+                ></Bar>
                 <h2>Metrics Analyzer:</h2>
-                <MetricsAnalyzer metrics={audioFeatures} />
+                {
+                    audioFeatures.map((audiof) => {
+                        return (
+                            <p key={audiof['index']}>{audiof['danceability']}</p>
+                        )
+                    })
+                }
             </section>
         </div>
     )

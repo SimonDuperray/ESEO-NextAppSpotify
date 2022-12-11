@@ -1,4 +1,4 @@
-{
+export const theWeekndTracks = {
   "6b5P51m8xx2XA6U7sdNZ5E": {
     "index": 1,
     "title": "Alone Again",
