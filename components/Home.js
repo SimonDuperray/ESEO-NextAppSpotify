@@ -147,15 +147,7 @@ const Home = (props) => {
                 <Bar
                     data={dataChart}
                     options={optionsChart}
-                ></Bar>
-                <h2>Metrics Analyzer:</h2>
-                {
-                    audioFeatures.map((audiof) => {
-                        return (
-                            <p key={audiof['index']}>{audiof['danceability']}</p>
-                        )
-                    })
-                }
+                />
             </section>
         </div>
     )
