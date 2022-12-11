@@ -7,6 +7,12 @@ import Home from "../components/Home";
 import { getDocs, collection, getFirestore } from "firebase/firestore";
 import Link from "next/link";
 
+/**
+ * Homepage of the app
+ * Render the login component if the user is not logged in, the track's info and graphs otherwise
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function HomePage() {
     const [user, setUser] = useState({});
     const [tracks, setTracks] = useState([]);
@@ -33,6 +39,11 @@ function HomePage() {
                 console.error(err);
             });
     }
+
+    /**
+     *   When the page is loaded:
+     *      - fetch all tracks info from the firebase database
+     */
     useEffect(() => {
         const fetchData = async () => {
             let tracksList = [];

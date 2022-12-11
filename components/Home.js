@@ -13,6 +13,7 @@ import { Bar } from "react-chartjs-2";
 import TrackCard from "./TrackCard";
 import Link from "next/link";
 
+// instantiate new ChartJS Component
 ChartJS.register(
     BarElement,
     CategoryScale,
@@ -21,10 +22,17 @@ ChartJS.register(
     Legend
 )
 
+/**
+ * Home component is called once the homepage is reached by the user
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Home = (props) => {
-
     const [tracksId, setTracksId] = useState([]);
+    // store all the audio features data from api
     const [audioFeatures, setAudioFeatures] = useState([]);
+    // store data to fill chart
     const [barData, setBarData] = useState({
         labels: [],
         datasets: [{
@@ -32,8 +40,14 @@ const Home = (props) => {
         }]
     });
 
+    /**
+     *  When the page is loaded:
+     *      - fetch all tracks ids from the props
+     *      - fetch audio features for each The Weeknd track from database
+     *      - create filled graphs
+     */
     useEffect(() => {
-        // get tracks id
+        // fetch tracks id from props
         let tracks_id = [];
         for (let i=0; i < Object.values(props.tracks).length; i++) {
             tracks_id.push(Object.values(props.tracks)[i]['id'])
@@ -41,15 +55,15 @@ const Home = (props) => {
         setTracksId(tracks_id);
         console.log(`> Tracks ids successfully stored in state: ${tracksId}`);
 
-        // fetch audio-features
+        // fetch audio-features: create an async function and call it just after declaration
         const fetchAudioFeatures = async () => {
             let audioFeaturesList = [];
             const querySnapshot = await getDocs(collection(getFirestore(app), "the_weeknd_audio_features"));
-            console.log(`querySnapshot: ${querySnapshot}`)
             querySnapshot.forEach((audio_features) => {
                 audioFeaturesList.push(audio_features.data());
             });
             setAudioFeatures(audioFeaturesList);
+            // test (err_blocked_by_client)
             console.log(JSON.stringify(audioFeaturesList));
             console.log("> All audio features have correctly been fetched from database.");
         };
@@ -58,6 +72,8 @@ const Home = (props) => {
                  console.log(err);
              })
 
+        // create filled graphs
+        // TODO: trash data for the moment but fetch it from state after
         let data = {
             labels: ['un', 'deux', 'trois'],
             datasets: [{
@@ -70,10 +86,20 @@ const Home = (props) => {
 
     }, []);
 
+    /**
+     * Allow to wait between each API request
+     * @param ms
+     * @returns {Promise<unknown>}
+     */
     const sleep = (ms) => {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+    /**
+     * Reload audio features from the API (requires TOKEN)
+     * TODO: form to get the token directly from a form and pass it as a parameter
+     * @returns {Promise<void>}
+     */
     const refetchAudioFeatures = async () => {
         const TOKEN = "BQCcQW6UqlutdkosoFYRFAsCMIOmbccuU05k7VmgEeJu6rMT2d9mSauXmZQkThRnzRBStZbNN9g2uLl3Sr2w5cDdqfeLzwV9laFOyLUGiSP4MHaeAKJ_09S2hzyDvi_BjS7Us_l_n10hQLzavMss7w8iTGjER_wZAlkSKp1mgtmDl7oYmvZusLo";
 
@@ -108,6 +134,11 @@ const Home = (props) => {
     };
     const optionsChart = {};
 
+    /**
+     * Return all audio-features for the given track id
+     * @param trackId
+     * @returns {*}
+     */
     const getCorrespondingMetrics = (trackId) => {
         let toReturn = null;
         for(let i = 0; i < audioFeatures.length; i++) {
@@ -122,18 +153,18 @@ const Home = (props) => {
         <div>
             <h1>Welcome {props.dpName}</h1>
             <h2>Setlist tracks:</h2>
-            <button onClick={() => refetchAudioFeatures()}>Fetch tracks features</button>
+            <button onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
             <section id="track_cards_container">
                 {
                     props.tracks.map(track => {
                         return (
                             <TrackCard
-                                key={track.title}
-                                title={track.title}
-                                duration={track.duration_ms}
-                                album={track.album}
-                                icon_url={track.icon_url}
-                                index={track.index}
+                                key={ track.title }
+                                title={ track.title }
+                                duration={ track.duration_ms }
+                                album={ track.album }
+                                icon_url={ track.icon_url }
+                                index={ track.index }
                                 metrics={ getCorrespondingMetrics(track.id) }
                             />
                         )
@@ -145,8 +176,8 @@ const Home = (props) => {
                     <Link href="/metricsDescription">Metrics description</Link>
                 </button>
                 <Bar
-                    data={dataChart}
-                    options={optionsChart}
+                    data={ dataChart }
+                    options={ optionsChart }
                 />
             </section>
         </div>

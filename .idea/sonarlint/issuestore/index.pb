@@ -8,11 +8,3 @@ M
 data/audio_features_bank.json,5\a\5a1d27edf3057bad44f64bea32e0f03525fb6c30
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-F
-styles/Home.module.css,f\6\f6d26d7846b1def42d3c4020b6995a5da417b648
-B
-styles/globals.css,8\c\8c258232cbcd5d83991c524a9e86c8d3f984fc57
-=
-pages/_app.js,2\0\202812cedbed29fdf712361f0e7a919932f9e751
-I
-components/LoginButton.js,1\e\1e5e4fc07fa42445ac79513220ded51bd45cb704

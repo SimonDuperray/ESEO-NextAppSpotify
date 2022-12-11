@@ -1,6 +1,12 @@
 import MetricCard from "./MetricCard";
 import {Image} from "antd";
 
+/**
+ * Render a card track with the track's info and metric
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const TrackCard = (props) => {
     const metricsLabel = ['valence', 'acousticness', 'liveness', 'speechiness', 'instrumentalness', 'energy', 'danceability'];
     return (

@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+/**
+ * Propose a short description for each of the proposed track metric
+ * @returns {JSX.Element}
+ */
 const metricsDescription = () => {
     return (
         <div id="metrics-description">

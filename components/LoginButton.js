@@ -5,6 +5,11 @@ import {
 } from "firebase/auth";
 import { app } from "../config/firebaseConfig";
 
+/**
+ * Allow the user to log in by using Google Auth Provided
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const LoginButton = () => {
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth(app);
