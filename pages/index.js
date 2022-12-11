@@ -6,7 +6,6 @@ import {GoogleOutlined} from "@ant-design/icons";
 import Home from "../components/Home";
 import { getDocs, collection, getFirestore } from "firebase/firestore";
 import Link from "next/link";
-import {theWeekndTracks} from "../data/ids";
 
 function HomePage() {
     const [user, setUser] = useState({});
@@ -42,6 +41,7 @@ function HomePage() {
                 tracksList.push(doc.data());
             })
             setTracks(tracksList);
+            console.log(`tracks list: ${tracks}`);
         }
          fetchData()
              .catch((err) => {

@@ -12,7 +12,6 @@ import {
 import { Bar } from "react-chartjs-2";
 import TrackCard from "./TrackCard";
 import Link from "next/link";
-import {theWeekndAudioFeatures} from "../data/the_weeknd_audio_features-1670683376";
 
 ChartJS.register(
     BarElement,
@@ -33,19 +32,20 @@ const Home = (props) => {
         }]
     });
 
-    useEffect((fieldPath, options) => {
+    useEffect(() => {
         // get tracks id
         let tracks_id = [];
         for (let i=0; i < Object.values(props.tracks).length; i++) {
             tracks_id.push(Object.values(props.tracks)[i]['id'])
         }
         setTracksId(tracks_id);
-        console.log("> Tracks ids successfully stored in state!");
+        console.log(`> Tracks ids successfully stored in state: ${tracksId}`);
 
         // fetch audio-features
         const fetchAudioFeatures = async () => {
             let audioFeaturesList = [];
             const querySnapshot = await getDocs(collection(getFirestore(app), "the_weeknd_audio_features"));
+            console.log(`querySnapshot: ${querySnapshot}`)
             querySnapshot.forEach((audio_features) => {
                 audioFeaturesList.push(audio_features.data());
             });
