@@ -1,5 +1,6 @@
 import MetricCard from "./MetricCard";
 import $ from "jquery";
+import Link from "next/link";
 
 /**
  * Render a card track with the track's info and metric
@@ -9,12 +10,18 @@ import $ from "jquery";
  */
 const TrackCard = (props) => {
     const metricsLabel = ['valence', 'acousticness', 'liveness', 'speechiness', 'instrumentalness', 'energy', 'danceability'];
-
     return (
         <div className="track-card">
-            <div className="glow"/>
             <h3>
-                {props.index}. {props.title} &nbsp;
+                {props.index}.
+                <Link
+                    href={`/track/${props.metrics.id}`}
+                    state={{
+                        metrics: props.metrics
+                    }}
+                >
+                    {props.title}
+                </Link>
             </h3>
             <img className="icon-url-img" src={props.icon_url} alt="Album icon" />
             <p>
