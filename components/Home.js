@@ -12,6 +12,8 @@ import {
 import { Bar } from "react-chartjs-2";
 import TrackCard from "./TrackCard";
 import Link from "next/link";
+import {outTheWeekndAudioFeatures, } from "../data/the_weeknd_audio_features";
+import {outTracks} from "../data/tracks";
 
 // instantiate new ChartJS Component
 ChartJS.register(
@@ -29,9 +31,6 @@ ChartJS.register(
  * @constructor
  */
 const Home = (props) => {
-    const [tracksId, setTracksId] = useState([]);
-    // store all the audio features data from api
-    const [audioFeatures, setAudioFeatures] = useState([]);
     // store data to fill chart
     const [barData, setBarData] = useState({
         labels: [],
@@ -47,31 +46,6 @@ const Home = (props) => {
      *      - create filled graphs
      */
     useEffect(() => {
-        // fetch tracks id from props
-        let tracks_id = [];
-        for (let i=0; i < Object.values(props.tracks).length; i++) {
-            tracks_id.push(Object.values(props.tracks)[i]['id'])
-        }
-        setTracksId(tracks_id);
-        console.log(`> Tracks ids successfully stored in state: ${tracksId}`);
-
-        // fetch audio-features: create an async function and call it just after declaration
-        const fetchAudioFeatures = async () => {
-            let audioFeaturesList = [];
-            const querySnapshot = await getDocs(collection(getFirestore(app), "the_weeknd_audio_features"));
-            querySnapshot.forEach((audio_features) => {
-                audioFeaturesList.push(audio_features.data());
-            });
-            setAudioFeatures(audioFeaturesList);
-            // test (err_blocked_by_client)
-            console.log(JSON.stringify(audioFeaturesList));
-            console.log("> All audio features have correctly been fetched from database.");
-        };
-         fetchAudioFeatures()
-             .catch((err) => {
-                 console.log(err);
-             })
-
         // create filled graphs
         // TODO: trash data for the moment but fetch it from state after
         let data = {
@@ -141,9 +115,9 @@ const Home = (props) => {
      */
     const getCorrespondingMetrics = (trackId) => {
         let toReturn = null;
-        for(let i = 0; i < audioFeatures.length; i++) {
-            if(audioFeatures[i]['id'] && (audioFeatures[i]['id'] == trackId)) {
-                toReturn = audioFeatures[i];
+        for(let i = 0; i < outTheWeekndAudioFeatures.length; i++) {
+            if(outTheWeekndAudioFeatures[i]['id'] && (outTheWeekndAudioFeatures[i]['id'] == trackId)) {
+                toReturn = outTheWeekndAudioFeatures[i];
                 return toReturn;
             }
         }
@@ -156,7 +130,7 @@ const Home = (props) => {
             <button onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
             <section id="track_cards_container">
                 {
-                    props.tracks.map(track => {
+                    outTracks.map(track => {
                         return (
                             <TrackCard
                                 key={ track.title }

@@ -6,6 +6,7 @@ import {GoogleOutlined} from "@ant-design/icons";
 import Home from "../components/Home";
 import { getDocs, collection, getFirestore } from "firebase/firestore";
 import Link from "next/link";
+import { tracks } from "../data/tracks";
 
 /**
  * Homepage of the app
@@ -15,7 +16,7 @@ import Link from "next/link";
  */
 function HomePage() {
     const [user, setUser] = useState({});
-    const [tracks, setTracks] = useState([]);
+    const [tracksList, setTracksList] = useState([]);
 
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth(app);
@@ -46,18 +47,15 @@ function HomePage() {
      */
     useEffect(() => {
         const fetchData = async () => {
-            let tracksList = [];
+            let tr = [];
             const querySnapshot = await getDocs(collection(getFirestore(app), "tracks"));
             querySnapshot.forEach((doc) => {
-                tracksList.push(doc.data());
+                tr.push(doc.data());
             })
-            setTracks(tracksList);
-            console.log(`tracks list: ${tracks}`);
-        }
-         fetchData()
-             .catch((err) => {
-                 console.error(err);
-             })
+            setTracksList(tr);
+            console.log(`tracks list: ${tracksList}`);
+        };
+
     }, []);
     return (
         <div className={styles.container}>
@@ -76,7 +74,11 @@ function HomePage() {
             <main className={styles.main}>
                 {
                     user.email ? (
-                        <Home uid={user.email} dpName={user.displayName} tracks={tracks}/>
+                        <Home
+                            uid={user.email}
+                            dpName={user.displayName}
+                            tracks={tracks}
+                        />
                     ) : (
                         <div>
                             <h1 className={styles.title}>Welcome to Spotify Analytics App!</h1>
