@@ -58,7 +58,7 @@ function HomePage() {
 
     }, []);
     return (
-        <div className={styles.container}>
+        <div>
             <header>
                 <Link href="/">TW-Analyze</Link>
                 {
@@ -71,36 +71,38 @@ function HomePage() {
                     )
                 }
             </header>
-            <main className={styles.main}>
-                {
-                    user.email ? (
-                        <Home
-                            uid={user.email}
-                            dpName={user.displayName}
-                            tracks={tracks}
-                        />
-                    ) : (
-                        <div>
-                            <h1 className={styles.title}>Welcome to Spotify Analytics App!</h1>
+            <div className={styles.container}>
+                <main className={styles.main}>
+                    {
+                        user.email ? (
+                            <Home
+                                uid={user.email}
+                                dpName={user.displayName}
+                                tracks={tracks}
+                            />
+                        ) : (
+                            <div>
+                                <h1 className={styles.title}>Welcome to Spotify Analytics App!</h1>
 
-                            <button className={styles.gButton} onClick={ googleSignUp }>
-                                <GoogleOutlined className={styles.gIcon} />
-                                Sign Up with Google
-                            </button>
-                        </div>
-                    )
-                }
-            </main>
+                                <button className={styles.gButton} onClick={ googleSignUp }>
+                                    <GoogleOutlined className={styles.gIcon} />
+                                    Sign Up with Google
+                                </button>
+                            </div>
+                        )
+                    }
+                </main>
 
-            <footer className={styles.footer}>
-                <a
-                    href="https://github.com/SimonDuperray/ESEO-NextAppSpotify"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    © AUGER Caroline - DUPERRAY Simon
-                </a>
-            </footer>
+                <footer className={styles.footer}>
+                    <a
+                        href="https://github.com/SimonDuperray/ESEO-NextAppSpotify"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        © AUGER Caroline - DUPERRAY Simon
+                    </a>
+                </footer>
+            </div>
         </div>
     )
 }
