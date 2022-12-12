@@ -1,5 +1,4 @@
 import MetricCard from "./MetricCard";
-import {Image} from "antd";
 
 /**
  * Render a card track with the track's info and metric
@@ -10,14 +9,24 @@ import {Image} from "antd";
 const TrackCard = (props) => {
     const metricsLabel = ['valence', 'acousticness', 'liveness', 'speechiness', 'instrumentalness', 'energy', 'danceability'];
     return (
-        <div className="track-card-container">
+        <div className="track-card">
             <h3>
                 {props.index}. {props.title} &nbsp;
-                <Image src={props.icon_url} alt="Album icon" />
             </h3>
-            <p>Album: {props.album} - Duration: {((props.duration/1000)/60).toFixed(2)} min</p>
-            <p>Tempo: {props.metrics['tempo']}</p>
-            <div className="metrics-card-container">
+            <img className="icon-url-img" src={props.icon_url} alt="Album icon" />
+            <p>
+                <span className="mini-title">Album:</span> &nbsp;
+                 {props.album}
+            </p>
+            <p>
+                <span className="mini-title">Duration: </span> &nbsp;
+                 {new Date(props.duration).toISOString().slice(14, 19)} min
+            </p>
+            <p>
+                <span className="mini-title">Tempo: </span> &nbsp;
+                 {Math.floor(props.metrics['tempo'])} bpm</p>
+            <p><span className="mini-title">Metrics:</span> &nbsp;</p>
+            <div className="metrics-cards-container">
                 {
                     metricsLabel.map(label => {
                         return (

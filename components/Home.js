@@ -123,14 +123,21 @@ const Home = (props) => {
         }
     }
 
+    const sortOutTracks = () => {
+        outTracks.sort(function(first, second) {
+            return first.index - second.index;
+        });
+        return outTracks;
+    }
+
     return (
         <div>
             <h1>Welcome {props.dpName}</h1>
             <h2>Setlist tracks:</h2>
             <button onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
-            <section id="track_cards_container">
+            <section id="track-cards-container">
                 {
-                    outTracks.map(track => {
+                    sortOutTracks().map(track => {
                         return (
                             <TrackCard
                                 key={ track.title }

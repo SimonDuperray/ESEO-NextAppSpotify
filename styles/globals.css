@@ -32,3 +32,49 @@ a {
 #metrics-description > ul > li {
   padding: 20px;
 }
+
+section#track-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85vw;
+  margin: 0 auto;
+}
+
+div.track-card {
+  margin: 10px;
+  border: 1px solid #fff;
+  padding: 0 10px;
+  width: 400px;
+  position: relative;
+}
+
+div.track-card img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0 0 5px 5px;
+}
+
+div.track-card > p > span.mini-title {
+  text-decoration: underline;
+}
+
+div.metrics-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+div.metric-card {
+  border-radius: 20px;
+  margin: 5px;
+  padding: 0 10px;
+}
+
+div.metric-card > p {
+  margin: 5px;
+}
+
+div.ant-image-mask-info {
+  display: none;
+}
