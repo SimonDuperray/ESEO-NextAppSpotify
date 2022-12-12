@@ -1,9 +1,19 @@
+/* COLORS PALETTE
+  #02111B
+  #3F4045
+  #30292F
+  #5D737E
+  #FCFCFC
+ */
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #02111B;
+  color: #fff;
 }
 
 a {
@@ -15,20 +25,123 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-  .track-card-container {
-    border: 1px solid #fff;
-    padding: 5px;
-  }
+header {
+  margin: 0;
+  background-color: #3F4045;
+  padding: 10px 0;
+}
+
+header > * {
+  margin-left: 2%;
 }
 
 #metrics-description > ul > li {
   padding: 20px;
+}
+
+section#track-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85vw;
+  margin: 0 auto;
+}
+
+div.track-card {
+  margin: 10px;
+  border-radius: 5px;
+  padding: 0 10px;
+  width: 400px;
+  position: relative;
+  background-color: #3F4045;
+  -webkit-box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
+  box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
+  opacity: 0.8;
+  transition: .3s;
+}
+
+div.track-card:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+div.track-card img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0 0 5px 5px;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  -webkit-box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
+  box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
+}
+
+div.track-card > p > span.mini-title {
+  text-decoration: underline;
+}
+
+div.metrics-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+div.metric-card {
+  border-radius: 20px;
+  margin: 5px;
+  padding: 0 10px;
+}
+
+div.metric-card > p {
+  margin: 5px;
+}
+
+div.ant-image-mask-info {
+  display: none;
+}
+
+div.metrics-description-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85vw;
+  margin: 0 auto;
+}
+
+div.description-card {
+  border-radius: 5px;
+  width: 300px;
+  padding: 0 10px;
+  background-color: #3F4045;
+  margin: 10px;
+  -webkit-box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
+  box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
+  opacity: 0.8;
+  transition: .3s;
+}
+
+div.description-card:hover {
+  opacity: 1;
+}
+
+div.description-card > h3 {
+  text-align: center;
+  margin: 5px 0;
+  color: #5D737E;
+  text-decoration: underline;
+}
+
+div.description-card > h3:hover {
+  cursor: default;
+}
+
+.custom-button {
+  padding: 4px 8px;
+  border-radius: 3px;
+  margin: 3px;
+  letter-spacing: 1px;
+  border: none;
+}
+
+.custom-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

@@ -14,6 +14,7 @@ import TrackCard from "./TrackCard";
 import Link from "next/link";
 import {outTheWeekndAudioFeatures, } from "../data/the_weeknd_audio_features";
 import {outTracks} from "../data/tracks";
+import $ from 'jquery';
 
 // instantiate new ChartJS Component
 ChartJS.register(
@@ -123,14 +124,26 @@ const Home = (props) => {
         }
     }
 
+    const sortOutTracks = () => {
+        outTracks.sort(function(first, second) {
+            return first.index - second.index;
+        });
+        return outTracks;
+    }
+
     return (
         <div>
             <h1>Welcome {props.dpName}</h1>
+            <button className="custom-button">
+                <Link href="/metricsDescription">
+                    Metrics description page
+                </Link>
+            </button>
             <h2>Setlist tracks:</h2>
-            <button onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
-            <section id="track_cards_container">
+            <button className="custom-button" onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
+            <section id="track-cards-container">
                 {
-                    outTracks.map(track => {
+                    sortOutTracks().map(track => {
                         return (
                             <TrackCard
                                 key={ track.title }

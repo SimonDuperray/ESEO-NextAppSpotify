@@ -34,7 +34,7 @@ const MetricCard = (props) => {
             }
         >
             <p>
-                { props.metricLabel }: { props.metricValue }
+                { props.metricLabel }
             </p>
         </div>
     )
