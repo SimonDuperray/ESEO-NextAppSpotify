@@ -1,4 +1,5 @@
 import MetricCard from "./MetricCard";
+import $ from "jquery";
 
 /**
  * Render a card track with the track's info and metric
@@ -8,8 +9,10 @@ import MetricCard from "./MetricCard";
  */
 const TrackCard = (props) => {
     const metricsLabel = ['valence', 'acousticness', 'liveness', 'speechiness', 'instrumentalness', 'energy', 'danceability'];
+
     return (
         <div className="track-card">
+            <div className="glow"/>
             <h3>
                 {props.index}. {props.title} &nbsp;
             </h3>

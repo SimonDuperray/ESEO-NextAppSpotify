@@ -64,7 +64,7 @@ function HomePage() {
                 {
                     user.email ? (
                         <div>
-                            <button onClick={ signOut }>Sign out</button>
+                            <button className="custom-button" onClick={ signOut }>Sign out</button>
                         </div>
                     ) : (
                         <></>
