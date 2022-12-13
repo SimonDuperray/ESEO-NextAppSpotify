@@ -9,7 +9,6 @@ import {
     Tooltip,
     Legend
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
 import TrackCard from "./TrackCard";
 import Link from "next/link";
 import { outTheWeekndAudioFeatures } from "../data/the_weeknd_audio_features";
@@ -165,10 +164,6 @@ const Home = (props) => {
                 <button>
                     <Link href="/metricsDescription">Metrics description</Link>
                 </button>
-                <Bar
-                    data={ dataChart }
-                    options={ optionsChart }
-                />
             </section>
         </div>
     )

@@ -1,23 +1,25 @@
-import { useState, useEffect } from "react";
-import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import { app } from "../config/firebaseConfig";
+import App from "../components/Home"
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import Home from "../components/Home";
 import styles from "../styles/Home.module.css";
 import {GoogleOutlined} from "@ant-design/icons";
-import Home from "../components/Home";
-import { getDocs, collection, getFirestore } from "firebase/firestore";
-import Link from "next/link";
-import { tracks } from "../data/tracks";
+import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {app} from "../config/firebaseConfig";
+import Footer from "../components/Footer";
 
-/**
- * Homepage of the app
- * Render the login component if the user is not logged in, the track's info and graphs otherwise
- * @returns {JSX.Element}
- * @constructor
- */
-function HomePage() {
+const Index = () => {
+    {/* STATE DECLARATION */}
     const [user, setUser] = useState({});
-    const [tracksList, setTracksList] = useState([]);
+    const [uidFromLocal, setUidFromLocal] = useState("");
 
+    {/* USE EFFECT DECLARATION */}
+    useEffect(() => {
+        setUidFromLocal(localStorage.getItem('uid'));
+        console.info("got uid from local storage");
+    }, [])
+
+    {/* AUTH SERVICES */}
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth(app);
     const googleSignUp = () => {
@@ -25,6 +27,8 @@ function HomePage() {
             .then((response) => {
                 console.log(response);
                 setUser(response.user);
+                window.localStorage.setItem('uid', response.user.uid);
+                setUidFromLocal(window.localStorage.getItem('uid'));
             })
             .catch((err) => {
                 console.error(err.code);
@@ -32,6 +36,8 @@ function HomePage() {
     }
     const signOut = () => {
         setUser({});
+        setUidFromLocal("");
+        window.localStorage.removeItem('uid');
         getAuth(app).signOut()
             .then((response) => {
                 console.log(response);
@@ -41,28 +47,17 @@ function HomePage() {
             });
     }
 
-    /**
-     *   When the page is loaded:
-     *      - fetch all tracks info from the firebase database
-     */
-    useEffect(() => {
-        const fetchData = async () => {
-            let tr = [];
-            const querySnapshot = await getDocs(collection(getFirestore(app), "tracks"));
-            querySnapshot.forEach((doc) => {
-                tr.push(doc.data());
-            })
-            setTracksList(tr);
-            console.log(`tracks list: ${tracksList}`);
-        };
+    {/* FUNCTIONS DECLARATION */}
+    const getLocalUid = () => {
+        return localStorage.getItem('uid');
+    }
 
-    }, []);
     return (
         <div>
             <header>
                 <Link href="/">TW-Analyze</Link>
                 {
-                    user.email ? (
+                    uidFromLocal ? (
                         <div>
                             <button className="custom-button" onClick={ signOut }>Sign out</button>
                         </div>
@@ -71,40 +66,26 @@ function HomePage() {
                     )
                 }
             </header>
-            <div className={styles.container}>
-                <main className={styles.main}>
-                    {
-                        user.email ? (
-                            <Home
-                                uid={user.email}
-                                dpName={user.displayName}
-                                tracks={tracks}
-                            />
-                        ) : (
-                            <div>
-                                <h1 className={styles.title}>Welcome to Spotify Analytics App!</h1>
-
-                                <button className={styles.gButton} onClick={ googleSignUp }>
-                                    <GoogleOutlined className={styles.gIcon} />
-                                    Sign Up with Google
-                                </button>
-                            </div>
-                        )
-                    }
-                </main>
-
-                <footer className={styles.footer}>
-                    <a
-                        href="https://github.com/SimonDuperray/ESEO-NextAppSpotify"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        © AUGER Caroline - DUPERRAY Simon
-                    </a>
-                </footer>
+            <div>
+                {
+                    uidFromLocal ? (
+                        <Home
+                            uid={user.uid}
+                            dpName={user.displayName}
+                        />
+                    ) : (
+                        <div id="login-container">
+                            <button className={styles.gButton} onClick={ googleSignUp }>
+                                <GoogleOutlined className={styles.gIcon} />
+                                Sign Up with Google
+                            </button>
+                        </div>
+                    )
+                }
             </div>
+            <Footer />
         </div>
     )
-}
+};
 
-export default HomePage;
+export default Index;

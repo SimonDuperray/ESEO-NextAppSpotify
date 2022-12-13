@@ -1,7 +1,7 @@
 import { outTracks } from "../../data/tracks";
 import { outTheWeekndAudioFeatures } from "../../data/the_weeknd_audio_features";
 import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Tooltip} from "chart.js";
-import { Bar, Bubble } from "react-chartjs-2";
+import { Bar     } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 
 ChartJS.register(

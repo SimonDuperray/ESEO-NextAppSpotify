@@ -35,6 +35,11 @@ header > * {
   margin-left: 2%;
 }
 
+footer {
+  margin: 30px 0;
+  text-align: center;
+}
+
 #metrics-description > ul > li {
   padding: 20px;
 }
@@ -158,4 +163,8 @@ div.graph-container {
   margin: auto;
   border: 1px solid #fff;
   padding: 5px;
+}
+
+div#login-container {
+  height: 100vh;
 }
