@@ -6,6 +6,7 @@
   #FCFCFC
  */
 
+/* MAIN ELEMENTS */
 html,
 body {
   padding: 0;
@@ -25,6 +26,7 @@ a {
   box-sizing: border-box;
 }
 
+/* HEADER */
 header {
   margin: 0;
   background-color: #3F4045;
@@ -35,15 +37,18 @@ header > * {
   margin-left: 2%;
 }
 
+/* FOOTER */
 footer {
   margin: 30px 0;
   text-align: center;
 }
 
+/* GLOBAL CONTAINERS */
 div.global-container {
   margin: 0 5%;
 }
 
+/* LOGIN PAGE */
 div#login-container > button.gbutton {
   background-color: #FFF;
   color: #02111B;
@@ -59,10 +64,16 @@ div#login-container > button > .gicon {
   margin-right: 10px;
 }
 
-#metrics-description > ul > li {
-  padding: 20px;
+div#login-container {
+  height: 100vh;
 }
 
+div#login-container > h3#login-text {
+  font-size: 35px;
+  margin-top: 15%;
+}
+
+/* TRACK CARD PAGE */
 section#track-cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -107,6 +118,7 @@ div.track-card > p > span.mini-title {
   text-decoration: underline;
 }
 
+/* METRIC CARD PAGE */
 div.metrics-cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -117,16 +129,19 @@ div.metric-card {
   border-radius: 20px;
   margin: 5px;
   padding: 0 10px;
+  opacity: .6;
+  transition: .3s;
+}
+
+div.metric-card:hover {
+  opacity: 1;
 }
 
 div.metric-card > p {
   margin: 5px;
 }
 
-div.ant-image-mask-info {
-  display: none;
-}
-
+/* METRIC DESCRIPTION */
 div.metrics-description-cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -134,6 +149,11 @@ div.metrics-description-cards-container {
   margin: 0 auto;
 }
 
+#metrics-description > ul > li {
+  padding: 20px;
+}
+
+/* DESCRIPTION CARD */
 div.description-card {
   border-radius: 5px;
   width: 300px;
@@ -161,6 +181,7 @@ div.description-card > h3:hover {
   cursor: default;
 }
 
+/* CUSTOM BUTTON */
 .custom-button {
   padding: 8px;
   border-radius: 3px;
@@ -180,6 +201,7 @@ div.description-card > h3:hover {
   text-decoration: underline;
 }
 
+/* GRAPH ELEMENTS */
 div.graph-container {
   text-align: center;
   width: 70%;
@@ -189,12 +211,8 @@ div.graph-container {
   padding: 5px;
 }
 
-div#login-container {
-  height: 100vh;
-}
+/* OTHER ELEMENTS */
 
-div#login-container > h3#login-text {
-  font-size: 35px;
-  margin-top: 15%;
+div.ant-image-mask-info {
+  display: none;
 }
-
