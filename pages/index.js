@@ -1,12 +1,11 @@
-import App from "../components/Home"
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Home from "../components/Home";
-import styles from "../styles/Home.module.css";
 import {GoogleOutlined} from "@ant-design/icons";
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import {app} from "../config/firebaseConfig";
 import Footer from "../components/Footer";
+import { LogoutOutlined } from "@ant-design/icons";
 
 const Index = () => {
     {/* STATE DECLARATION */}
@@ -64,7 +63,7 @@ const Index = () => {
                                 id="sign-out-button"
                                 onClick={ signOut }
                             >
-                                Sign out
+                                <LogoutOutlined />
                             </button>
                         </div>
                     ) : (
@@ -81,8 +80,9 @@ const Index = () => {
                         />
                     ) : (
                         <div id="login-container">
-                            <button className={styles.gButton} onClick={ googleSignUp }>
-                                <GoogleOutlined className={styles.gIcon} />
+                            <h3 id="login-text">Welcome on TW-Analyze app ! You first need to authenticate with Google before going further !</h3>
+                            <button className="gbutton" onClick={ googleSignUp }>
+                                <GoogleOutlined className="gicon" />
                                 Sign Up with Google
                             </button>
                         </div>

@@ -1,5 +1,4 @@
 import MetricCard from "./MetricCard";
-import $ from "jquery";
 import Link from "next/link";
 
 /**
@@ -13,7 +12,7 @@ const TrackCard = (props) => {
     return (
         <div className="track-card">
             <h3>
-                {props.index}.
+                {props.index}.&nbsp;
                 <Link
                     href={`/track/${props.metrics.id}`}
                     state={{

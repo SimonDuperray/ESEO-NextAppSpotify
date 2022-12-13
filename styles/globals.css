@@ -44,6 +44,21 @@ div.global-container {
   margin: 0 5%;
 }
 
+div#login-container > button.gbutton {
+  background-color: #FFF;
+  color: #02111B;
+  padding: 10px 15px;
+  border: none;
+}
+
+div#login-container > button.gbutton:hover {
+  cursor: pointer;
+}
+
+div#login-container > button > .gicon {
+  margin-right: 10px;
+}
+
 #metrics-description > ul > li {
   padding: 20px;
 }
@@ -69,7 +84,7 @@ div.track-card {
 }
 
 div.track-card:hover {
-  cursor: default;
+  cursor: pointer;
   opacity: 1;
 }
 
@@ -86,7 +101,6 @@ div.track-card img {
   border-left: 1px solid #000;
   -webkit-box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
   box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
-  border-top-right-radius: 5px;
 }
 
 div.track-card > p > span.mini-title {
@@ -178,3 +192,9 @@ div.graph-container {
 div#login-container {
   height: 100vh;
 }
+
+div#login-container > h3#login-text {
+  font-size: 35px;
+  margin-top: 15%;
+}
+

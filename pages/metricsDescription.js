@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DescriptionCard from "../components/DescriptionCard";
+import DescriptionCard from "../components/cards/DescriptionCard";
 import Footer from "../components/Footer";
 import SimpleHeader from "../components/SimpleHeader";
 

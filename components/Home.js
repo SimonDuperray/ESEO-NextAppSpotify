@@ -9,7 +9,7 @@ import {
     Tooltip,
     Legend
 } from "chart.js";
-import TrackCard from "./TrackCard";
+import TrackCard from "./cards/TrackCard";
 import Link from "next/link";
 import { outTheWeekndAudioFeatures } from "../data/the_weeknd_audio_features";
 import { outTracks } from "../data/tracks";
@@ -131,7 +131,7 @@ const Home = (props) => {
 
     return (
         <div>
-            <h1>Welcome {props.dpName}</h1>
+            <h1>Welcome {props.dpName} !</h1>
             <div style={{
                display: "flex"
             }}>
@@ -140,7 +140,7 @@ const Home = (props) => {
                         Metrics description page
                     </Link>
                 </button>
-                <button className="custom-button" onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
+                <button disabled={true} className="custom-button" onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
             </div>
             <h2>Setlist tracks:</h2>
             <section id="track-cards-container">
@@ -161,9 +161,7 @@ const Home = (props) => {
                 }
             </section>
             <section id="ana_metrics">
-                <button>
-                    <Link href="/metricsDescription">Metrics description</Link>
-                </button>
+                <p>Main graphs</p>
             </section>
         </div>
     )
