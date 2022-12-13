@@ -77,3 +77,10 @@ $ yarn dev
 ```
 Not deployed yet
 ```
+
+## ToDo
+- fetch data from the dabase (not locally)
+- bubble/line chart for main analysis
+- recommendation from Trend Songs metrics
+- form token spotify to refetch data
+- deal with useEffect, useState and asynchronous requests
