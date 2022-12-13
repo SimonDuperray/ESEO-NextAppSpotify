@@ -40,6 +40,10 @@ footer {
   text-align: center;
 }
 
+div.global-container {
+  margin: 0 5%;
+}
+
 #metrics-description > ul > li {
   padding: 20px;
 }
@@ -144,23 +148,29 @@ div.description-card > h3:hover {
 }
 
 .custom-button {
-  padding: 4px 8px;
+  padding: 8px;
   border-radius: 3px;
   margin: 3px;
-  letter-spacing: 1px;
-  border: none;
+  color: #FCFCFC;
+  background-color: rgba(63, 64, 69, 1);
+  border: .5px solid black;
+  transition: .5s;
 }
 
 .custom-button:hover {
   cursor: pointer;
+  background-color: rgba(63, 64, 69, .5);
+}
+
+.custom-button#sign-out-button:hover {
   text-decoration: underline;
 }
 
 div.graph-container {
-  height: 400px;
   text-align: center;
   width: 70%;
   margin: auto;
+  height: 400px;
   border: 1px solid #fff;
   padding: 5px;
 }

@@ -1,8 +1,11 @@
 import { outTracks } from "../../data/tracks";
 import { outTheWeekndAudioFeatures } from "../../data/the_weeknd_audio_features";
 import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Tooltip} from "chart.js";
-import { Bar     } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import Footer from "../../components/Footer";
+import SimpleHeader from "../../components/SimpleHeader";
 
 ChartJS.register(
     BarElement,
@@ -78,34 +81,56 @@ const TrackDetails = ({ track }) => {
                     audioFeatures['speechiness'],
                     audioFeatures['valence']
                 ],
-                backgroundColor: "rgba(63, 64, 69, .2)",
-                borderColor: "rgba(63, 64, 69, 1)",
+                backgroundColor: "rgba(255, 255, 255, .2)",
+                borderColor: "rgba(255, 255, 255, 1)",
                 borderWidth: 1,
                 fill: true
             }]
         }
-
         setDetailsMetrics(data);
     }, []);
 
     return (
         <div>
-            <h1>{track.title}</h1>
-            <div className="graph-container">
-                <Bar
-                    data={ detailsMetrics }
-                    options={{
-                        responsive: true,
-                        scales: {
-                        y: {
-                        ticks: { color: 'white', beginAtZero: true }
-                    },
-                        x: {
-                        ticks: { color: 'white', beginAtZero: true }
-                    }
-                    }}}
-                />
+            <SimpleHeader />
+            <div>
+                <h1>{track.title}</h1>
+                <button className="custom-button">
+                    <Link href="/">
+                        Back to homepage
+                    </Link>
+                </button>
+                <div className="graph-container">
+                    <Bar
+                        data={ detailsMetrics }
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    ticks: {
+                                        color: 'white',
+                                        beginAtZero: true
+                                    },
+                                    grid: {
+                                        color: 'gray'
+                                    }
+                                },
+                                x: {
+                                    ticks: {
+                                        color: 'white',
+                                        beginAtZero: true
+                                    },
+                                    grid: {
+                                        color: 'gray'
+                                    }
+                                }
+                            }
+                        }}
+                    />
+                </div>
             </div>
+            <Footer />
         </div>
     )
 }

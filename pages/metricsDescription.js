@@ -1,6 +1,7 @@
 import Link from "next/link";
 import DescriptionCard from "../components/DescriptionCard";
 import Footer from "../components/Footer";
+import SimpleHeader from "../components/SimpleHeader";
 
 /**
  * Propose a short description for each of the proposed track metric
@@ -55,9 +56,7 @@ const metricsDescription = () => {
     ];
     return (
         <div>
-            <header>
-                <Link href="/">TW-Analyze</Link>
-            </header>
+            <SimpleHeader />
             <div id="metrics-description">
                 <button>
                     <Link href="/">Back to home</Link>

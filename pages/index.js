@@ -59,14 +59,20 @@ const Index = () => {
                 {
                     uidFromLocal ? (
                         <div>
-                            <button className="custom-button" onClick={ signOut }>Sign out</button>
+                            <button
+                                className="custom-button"
+                                id="sign-out-button"
+                                onClick={ signOut }
+                            >
+                                Sign out
+                            </button>
                         </div>
                     ) : (
                         <></>
                     )
                 }
             </header>
-            <div>
+            <div className="global-container">
                 {
                     uidFromLocal ? (
                         <Home
