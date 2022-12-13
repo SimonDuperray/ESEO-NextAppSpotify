@@ -35,6 +35,30 @@ header > * {
   margin-left: 2%;
 }
 
+footer {
+  margin: 30px 0;
+  text-align: center;
+}
+
+div.global-container {
+  margin: 0 5%;
+}
+
+div#login-container > button.gbutton {
+  background-color: #FFF;
+  color: #02111B;
+  padding: 10px 15px;
+  border: none;
+}
+
+div#login-container > button.gbutton:hover {
+  cursor: pointer;
+}
+
+div#login-container > button > .gicon {
+  margin-right: 10px;
+}
+
 #metrics-description > ul > li {
   padding: 20px;
 }
@@ -62,6 +86,10 @@ div.track-card {
 div.track-card:hover {
   cursor: pointer;
   opacity: 1;
+}
+
+div.track-card > h3:hover {
+  text-decoration: underline;
 }
 
 div.track-card img {
@@ -134,14 +162,39 @@ div.description-card > h3:hover {
 }
 
 .custom-button {
-  padding: 4px 8px;
+  padding: 8px;
   border-radius: 3px;
   margin: 3px;
-  letter-spacing: 1px;
-  border: none;
+  color: #FCFCFC;
+  background-color: rgba(63, 64, 69, 1);
+  border: .5px solid black;
+  transition: .5s;
 }
 
 .custom-button:hover {
   cursor: pointer;
+  background-color: rgba(63, 64, 69, .5);
+}
+
+.custom-button#sign-out-button:hover {
   text-decoration: underline;
 }
+
+div.graph-container {
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  height: 400px;
+  border: 1px solid #fff;
+  padding: 5px;
+}
+
+div#login-container {
+  height: 100vh;
+}
+
+div#login-container > h3#login-text {
+  font-size: 35px;
+  margin-top: 15%;
+}
+

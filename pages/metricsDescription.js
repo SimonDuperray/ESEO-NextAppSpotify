@@ -1,5 +1,7 @@
 import Link from "next/link";
-import DescriptionCard from "../components/DescriptionCard";
+import DescriptionCard from "../components/cards/DescriptionCard";
+import Footer from "../components/Footer";
+import SimpleHeader from "../components/SimpleHeader";
 
 /**
  * Propose a short description for each of the proposed track metric
@@ -53,24 +55,28 @@ const metricsDescription = () => {
         }
     ];
     return (
-        <div id="metrics-description">
-            <button>
-                <Link href="/">Back to home</Link>
-            </button>
-            <h1>Metrics Description:</h1>
-            <div className="metrics-description-cards-container">
-                {
-                    descriptions.map((desc) => {
-                        return (
-                            <DescriptionCard
-                                key={desc.label}
-                                label={desc.label}
-                                description={desc.description}
-                            />
-                        )
-                    })
-                }
+        <div>
+            <SimpleHeader />
+            <div id="metrics-description">
+                <button>
+                    <Link href="/">Back to home</Link>
+                </button>
+                <h1>Metrics Description:</h1>
+                <div className="metrics-description-cards-container">
+                    {
+                        descriptions.map((desc) => {
+                            return (
+                                <DescriptionCard
+                                    key={desc.label}
+                                    label={desc.label}
+                                    description={desc.description}
+                                />
+                            )
+                        })
+                    }
+                </div>
             </div>
+            <Footer />
         </div>
     )
 };

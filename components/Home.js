@@ -9,12 +9,10 @@ import {
     Tooltip,
     Legend
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
-import TrackCard from "./TrackCard";
+import TrackCard from "./cards/TrackCard";
 import Link from "next/link";
-import {outTheWeekndAudioFeatures, } from "../data/the_weeknd_audio_features";
-import {outTracks} from "../data/tracks";
-import $ from 'jquery';
+import { outTheWeekndAudioFeatures } from "../data/the_weeknd_audio_features";
+import { outTracks } from "../data/tracks";
 
 // instantiate new ChartJS Component
 ChartJS.register(
@@ -133,14 +131,18 @@ const Home = (props) => {
 
     return (
         <div>
-            <h1>Welcome {props.dpName}</h1>
-            <button className="custom-button">
-                <Link href="/metricsDescription">
-                    Metrics description page
-                </Link>
-            </button>
+            <h1>Welcome {props.dpName} !</h1>
+            <div style={{
+               display: "flex"
+            }}>
+                <button className="custom-button">
+                    <Link href="/metricsDescription">
+                        Metrics description page
+                    </Link>
+                </button>
+                <button disabled={true} className="custom-button" onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
+            </div>
             <h2>Setlist tracks:</h2>
-            <button className="custom-button" onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
             <section id="track-cards-container">
                 {
                     sortOutTracks().map(track => {
@@ -159,13 +161,7 @@ const Home = (props) => {
                 }
             </section>
             <section id="ana_metrics">
-                <button>
-                    <Link href="/metricsDescription">Metrics description</Link>
-                </button>
-                <Bar
-                    data={ dataChart }
-                    options={ optionsChart }
-                />
+                <p>Main graphs</p>
             </section>
         </div>
     )
