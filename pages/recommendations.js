@@ -10,7 +10,7 @@ import SimpleTrackCard from "../components/cards/SimpleTrackCard";
 
 const Recommendations = () => {
 
-    const [pickedMetrics, setPickedMetrics] = useState(['valence']);
+    const [pickedMetrics, setPickedMetrics] = useState([]);
     const [filteredTracks, setFilteredTracks] = useState([]);
 
     useEffect(() => {
@@ -57,12 +57,12 @@ const Recommendations = () => {
         let metToSearch = pickedMetrics;
         let sortedMetToSearch = [];
         for(let i=0; i<metToSearch.length; i++) {
-            for(let j=0; j<outAudioFeaturesBank.length; j++) {
-                console.log(`${metToSearch[i]}: ${outAudioFeaturesBank[j]['audio-features'][metToSearch[i]]}`);
-
-            }
+            sortedMetToSearch.push(
+                outAudioFeaturesBank.sort((a, b) => b[metToSearch[i]] - a[metToSearch[i]]).slice(0, 5)
+            );
         }
         setFilteredTracks(sortedMetToSearch);
+        console.log(`sortedMetToSearch: ${JSON.stringify(sortedMetToSearch)}`)
     }
 
     return (
