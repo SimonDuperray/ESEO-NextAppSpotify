@@ -61,8 +61,9 @@ const Recommendations = () => {
                 outAudioFeaturesBank.sort((a, b) => b[metToSearch[i]] - a[metToSearch[i]]).slice(0, 5)
             );
         }
-        setFilteredTracks(sortedMetToSearch);
+        setFilteredTracks(sortedMetToSearch.flat());
         console.log(`sortedMetToSearch: ${JSON.stringify(sortedMetToSearch)}`)
+        console.log(filteredTracks.length);
     }
 
     return (
@@ -105,11 +106,17 @@ const Recommendations = () => {
                 </button>
                 <h4 id="metrics-tag"></h4>
                 <div className="simple-track-cards-container">
-                    <p>
-                        {
-                            JSON.stringify(filteredTracks)
-                        }
-                    </p>
+                    {
+                        filteredTracks.map((flt) => {
+                            return (
+                                <SimpleTrackCard
+                                    key={flt['title']}
+                                    title={flt['title']}
+                                    artist={flt['artist']}
+                                />
+                            )
+                        })
+                    }
                 </div>
             </div>
             <Footer />

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const SimpleTrackCard = (props) => {
     return (
         <div className="simple-track-card">
