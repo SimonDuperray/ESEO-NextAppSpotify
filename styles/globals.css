@@ -211,6 +211,41 @@ div.graph-container {
   padding: 5px;
 }
 
+/* RECOMMENDATIONS PAGE */
+div.recommendations-container {
+  height: 100vh;
+  width: 90vw;
+  margin: auto;
+}
+
+div.recommendation-metric-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+div.recommendation-metric-card {
+  border-radius: 20px;
+  margin: 5px;
+  padding: 0 10px;
+  opacity: .6;
+  transition: .3s;
+  border: 1px solid rgba(63, 64, 69, 1);
+}
+
+div.recommendation-metric-card.picked {
+  background-color: rgba(63, 64, 69, 1);
+}
+
+div.recommendation-metric-card:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+div.recommendation-metric-card > p {
+  margin: 5px;
+}
+
 /* OTHER ELEMENTS */
 
 div.ant-image-mask-info {

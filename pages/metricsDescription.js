@@ -2,6 +2,7 @@ import Link from "next/link";
 import DescriptionCard from "../components/cards/DescriptionCard";
 import Footer from "../components/Footer";
 import SimpleHeader from "../components/SimpleHeader";
+import {HomeOutlined} from "@ant-design/icons";
 
 /**
  * Propose a short description for each of the proposed track metric
@@ -59,7 +60,9 @@ const metricsDescription = () => {
             <SimpleHeader />
             <div id="metrics-description">
                 <button className="custom-button">
-                    <Link href="/">Back to home</Link>
+                    <Link href="/">
+                        <HomeOutlined />
+                    </Link>
                 </button>
                 <h1>Metrics Description:</h1>
                 <div className="metrics-description-cards-container">

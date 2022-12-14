@@ -27,11 +27,9 @@ const MetricCard = (props) => {
         <div
             id={props.key}
             className="metric-card"
-            style={
-                {
+            style={{
                     backgroundColor: renderColor()
-                }
-            }
+            }}
         >
             <p>
                 { props.metricLabel }

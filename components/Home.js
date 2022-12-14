@@ -162,6 +162,11 @@ const Home = (props) => {
                         Metrics description page
                     </Link>
                 </button>
+                <button className="custom-button">
+                    <Link href="/recommendations">
+                        Recommendations page
+                    </Link>
+                </button>
                 <button disabled={true} className="custom-button" onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
             </div>
             <h2>Setlist tracks:</h2>

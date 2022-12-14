@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Footer from "../../components/Footer";
 import SimpleHeader from "../../components/SimpleHeader";
+import {HomeOutlined} from "@ant-design/icons";
 
 ChartJS.register(
     BarElement,
@@ -97,7 +98,7 @@ const TrackDetails = ({ track }) => {
                 <h1>{track.title}</h1>
                 <button className="custom-button">
                     <Link href="/">
-                        Back to homepage
+                        <HomeOutlined />
                     </Link>
                 </button>
                 <div className="graph-container">
