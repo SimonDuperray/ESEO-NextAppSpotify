@@ -5,15 +5,19 @@ import {HomeOutlined} from "@ant-design/icons";
 import {outMetrics} from "../data/metrics";
 import RecommendationMetricCard from "../components/cards/RecommendationMetricCard";
 import {useState, useEffect} from "react";
-import {pick} from "next/dist/lib/pick";
+import {outAudioFeaturesBank} from "../data/audio_features_bank";
+import SimpleTrackCard from "../components/cards/SimpleTrackCard";
 
 const Recommendations = () => {
 
-    const [pickedMetrics, setPickedMetrics] = useState([]);
+    const [pickedMetrics, setPickedMetrics] = useState(['valence']);
+    const [filteredTracks, setFilteredTracks] = useState([]);
 
     useEffect(() => {
         console.log(`PickedMetrics init: ${JSON.stringify(pickedMetrics)}`);
     }, []);
+
+    const searchButtonLabel = "> Search";
 
     const renderMetricsToDisplay = () => {
         let toRet = "> ";
@@ -26,13 +30,12 @@ const Recommendations = () => {
                 }
             }
         } else {
-            toRet = "[No Metrics Picked]";
+            toRet += "[No Metrics Picked]";
         }
         return toRet;
     }
 
     const handlePickedMetricsState = (event, met) => {
-        event.preventDefault();
         let currentState = pickedMetrics;
         if(currentState.includes(met)) {
             // if the picked met is already on the state
@@ -48,6 +51,18 @@ const Recommendations = () => {
         console.log(`just picked ${met} metric - state updated!`);
         console.log(JSON.stringify(pickedMetrics));
         document.querySelector('#metrics-tag').innerHTML = renderMetricsToDisplay();
+    }
+
+    const findBestTracks = () => {
+        let metToSearch = pickedMetrics;
+        let sortedMetToSearch = [];
+        for(let i=0; i<metToSearch.length; i++) {
+            for(let j=0; j<outAudioFeaturesBank.length; j++) {
+                console.log(`${metToSearch[i]}: ${outAudioFeaturesBank[j]['audio-features'][metToSearch[i]]}`);
+
+            }
+        }
+        setFilteredTracks(sortedMetToSearch);
     }
 
     return (
@@ -82,7 +97,20 @@ const Recommendations = () => {
                 <h3>
                     You can find just below some tracks you may appreciate based on your preferences:
                 </h3>
+                <button
+                    className="custom-button"
+                    onClick={() => findBestTracks() }
+                >
+                    { searchButtonLabel }
+                </button>
                 <h4 id="metrics-tag"></h4>
+                <div className="simple-track-cards-container">
+                    <p>
+                        {
+                            JSON.stringify(filteredTracks)
+                        }
+                    </p>
+                </div>
             </div>
             <Footer />
         </div>
