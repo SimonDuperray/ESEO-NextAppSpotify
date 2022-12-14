@@ -229,17 +229,14 @@ div.recommendation-metric-card {
   margin: 5px;
   padding: 0 10px;
   opacity: .6;
-  transition: .3s;
+  transition: .4s;
   border: 1px solid rgba(63, 64, 69, 1);
-}
-
-div.recommendation-metric-card.picked {
-  background-color: rgba(63, 64, 69, 1);
 }
 
 div.recommendation-metric-card:hover {
   opacity: 1;
   cursor: pointer;
+  background-color: rgba(63, 64, 69, 1);
 }
 
 div.recommendation-metric-card > p {
