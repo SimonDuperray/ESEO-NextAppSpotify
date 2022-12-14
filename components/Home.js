@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useId} from "react";
 import {doc, setDoc, getDocs, getFirestore, collection} from "firebase/firestore";
 import { app } from "../config/firebaseConfig";
 import {
@@ -37,6 +37,9 @@ const Home = (props) => {
             data: []
         }]
     });
+    const [spotifyToken, setSpotifyToken] = useState('');
+
+    const id = useId();
 
     /**
      *  When the page is loaded:
@@ -74,7 +77,11 @@ const Home = (props) => {
      * @returns {Promise<void>}
      */
     const refetchAudioFeatures = async () => {
-        const TOKEN = "BQCcQW6UqlutdkosoFYRFAsCMIOmbccuU05k7VmgEeJu6rMT2d9mSauXmZQkThRnzRBStZbNN9g2uLl3Sr2w5cDdqfeLzwV9laFOyLUGiSP4MHaeAKJ_09S2hzyDvi_BjS7Us_l_n10hQLzavMss7w8iTGjER_wZAlkSKp1mgtmDl7oYmvZusLo";
+        if(spotifyToken) {
+            const stoken = spotifyToken;
+        } else {
+            alert("You still not provided your Spotify token");
+        }
 
         // go through these ids and send request
         for (let j = 0; j < tracksId.length; j++) {
@@ -90,6 +97,8 @@ const Home = (props) => {
             console.log("> Data added to the database");
             await sleep(5000);
         }
+        setSpotifyToken('');
+        alert('For confidential reasons, your token has been deleted. You have to regenerate a new one to refetch data again.');
     }
 
     // TODO: Caroline - compute average values for each metric and create bar graph to render data
@@ -129,9 +138,22 @@ const Home = (props) => {
         return outTracks;
     }
 
+    const provideToken = () => {
+        let token = prompt("Please enter your Spotify Token");
+        setSpotifyToken(token);
+        window.localStorage.setItem('spotifyToken', token);
+        alert('Your token has been successfully stored!');
+    }
+
     return (
         <div>
             <h1>Welcome {props.dpName} !</h1>
+            <button
+                className="custom-button"
+                onClick={() => provideToken()}
+            >
+                Provide Spotify Token
+            </button>
             <div style={{
                display: "flex"
             }}>

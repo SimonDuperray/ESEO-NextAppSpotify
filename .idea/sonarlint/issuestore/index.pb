@@ -13,11 +13,13 @@ Q
 !data/the_weeknd_audio_features.js,2\0\205d41caca6e3b82ffd0b1c5778eb6c7cf80bc93
 K
 data/audio_features_bank.js,2\5\25419081cd9146ae1fe8c9765e0caec03ef90228
-K
-pages/metricsDescription.js,b\a\ba5f745e9ce8f5f85c060dcc9df11b172114b970
 =
 pages/_app.js,2\0\202812cedbed29fdf712361f0e7a919932f9e751
 C
 components/Trash.js,a\d\adb03c227bd871360f6edaa188a3d30df363b1ca
+S
+#components/cards/DescriptionCard.js,e\9\e9f18ca168a317bf4156a10ecb05d57038669d6c
+N
+components/cards/MetricCard.js,2\b\2be467df86becb614d78d5ad120cf914b64fbb5d
 B
-components/Home.js,b\2\b28ee138df3ecff0691e052b08ed8bd3b97c4955
+styles/globals.css,8\c\8c258232cbcd5d83991c524a9e86c8d3f984fc57

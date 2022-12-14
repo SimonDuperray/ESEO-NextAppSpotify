@@ -16,7 +16,7 @@ const Index = () => {
     useEffect(() => {
         setUidFromLocal(localStorage.getItem('uid'));
         console.info("got uid from local storage");
-    }, [])
+    }, []);
 
     {/* AUTH SERVICES */}
     const googleProvider = new GoogleAuthProvider();
@@ -37,6 +37,9 @@ const Index = () => {
         setUser({});
         setUidFromLocal("");
         window.localStorage.removeItem('uid');
+        if(window.localStorage.getItem('spotifyToken')) {
+            window.localStorage.removeItem('spotifyToken');
+        }
         getAuth(app).signOut()
             .then((response) => {
                 console.log(response);

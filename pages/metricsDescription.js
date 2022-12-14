@@ -58,7 +58,7 @@ const metricsDescription = () => {
         <div>
             <SimpleHeader />
             <div id="metrics-description">
-                <button>
+                <button className="custom-button">
                     <Link href="/">Back to home</Link>
                 </button>
                 <h1>Metrics Description:</h1>
