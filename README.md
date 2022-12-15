@@ -79,6 +79,5 @@ Not deployed yet
 ```
 
 ## ToDo
-- fetch data from the dabase & deal with useEffect, useState and asynchronous functions (not locally)
+- fetch data from the database & deal with useEffect, useState and asynchronous functions (not locally)
 - bubble/line chart for main analysis
-- recommendation from Trend Songs metrics

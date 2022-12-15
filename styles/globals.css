@@ -211,6 +211,73 @@ div.graph-container {
   padding: 5px;
 }
 
+/* RECOMMENDATIONS PAGE */
+div.recommendations-container {
+  height: 100vh;
+  width: 90vw;
+  margin: auto;
+}
+
+div.recommendation-metric-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+div.recommendation-metric-card {
+  border-radius: 20px;
+  margin: 5px;
+  padding: 0 10px;
+  opacity: .6;
+  transition: .4s;
+  border: 1px solid rgba(63, 64, 69, 1);
+}
+
+div.recommendation-metric-card.active {
+  background-color: rgba(63, 64, 69, 1);
+  color: #FCFCFC;
+}
+
+div.recommendation-metric-card:hover {
+  opacity: 1;
+  cursor: pointer;
+  background-color: rgba(63, 64, 69, 1);
+}
+
+div.recommendation-metric-card > p {
+  margin: 5px;
+}
+
+/* SIMPLE TRACK CARD */
+div.simple-track-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85vw;
+  margin: 0 auto;
+}
+
+div.simple-track-card {
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px;
+  position: relative;
+  background-color: #3F4045;
+  -webkit-box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
+  box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
+  opacity: 0.8;
+  transition: .3s;
+}
+
+div.simple-track-card:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+div.simple-track-card > p.simple-track-card-title:hover {
+  text-decoration: underline;
+}
+
 /* OTHER ELEMENTS */
 
 div.ant-image-mask-info {
