@@ -1,6 +1,6 @@
 const RecommendationMetricCard = (props) => {
     return (
-        <div className="recommendation-metric-card">
+        <div id={props.label} className="recommendation-metric-card">
             <p>{props.label}</p>
         </div>
     );

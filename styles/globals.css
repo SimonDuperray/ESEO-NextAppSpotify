@@ -233,6 +233,11 @@ div.recommendation-metric-card {
   border: 1px solid rgba(63, 64, 69, 1);
 }
 
+div.recommendation-metric-card.active {
+  background-color: rgba(63, 64, 69, 1);
+  color: #FCFCFC;
+}
+
 div.recommendation-metric-card:hover {
   opacity: 1;
   cursor: pointer;

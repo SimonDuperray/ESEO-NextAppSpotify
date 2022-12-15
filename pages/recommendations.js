@@ -61,9 +61,28 @@ const Recommendations = () => {
                 outAudioFeaturesBank.sort((a, b) => b[metToSearch[i]] - a[metToSearch[i]]).slice(0, 5)
             );
         }
-        setFilteredTracks(sortedMetToSearch.flat());
-        console.log(`sortedMetToSearch: ${JSON.stringify(sortedMetToSearch)}`)
-        console.log(filteredTracks.length);
+        let flattenList = sortedMetToSearch.flat();
+        let removedDuplicates = [];
+        flattenList.forEach((element) => {
+            if (!removedDuplicates.includes(element)) {
+                removedDuplicates.push(element);
+            }
+        });
+        setFilteredTracks(removedDuplicates);
+
+        // refresh active class on un-picked selected metrics card
+        for(let k=0; k<outMetrics.length; k++) {
+            let elem = document.getElementById(outMetrics[k]);
+            if(metToSearch.includes(outMetrics[k])) {
+                if(!elem.classList.contains('active')) {
+                    elem.classList.add('active');
+                }
+            } else {
+                if(elem.classList.contains('active')) {
+                    elem.classList.remove('active');
+                }
+            }
+        }
     }
 
     return (

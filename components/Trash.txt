@@ -35,17 +35,3 @@ fetchData()
     .catch((err) => {
         console.error(err);
     });
-
-
-
-{
-    findBestTracks().map((track) => {
-        return (
-            <SimpleTrackCard
-                key={track['audio-features']['id']}
-                title={track['title']}
-                artist={track['artist']}
-            />
-        )
-    })
-}
