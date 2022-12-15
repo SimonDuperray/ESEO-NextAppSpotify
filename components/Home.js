@@ -145,27 +145,20 @@ const Home = (props) => {
         alert('Your token has been successfully stored!');
     }
 
+    const dpNameFromLocal = window.localStorage.getItem('dpName');
+
     return (
         <div>
-            <h1>Welcome {props.dpName} !</h1>
-            <button
-                className="custom-button"
-                onClick={() => provideToken()}
-            >
-                Provide Spotify Token
-            </button>
+            <h1>Welcome { dpNameFromLocal } !</h1>
+            <h5>Reload data:</h5>
             <div style={{
-               display: "flex"
+                display: "flex"
             }}>
-                <button className="custom-button">
-                    <Link href="/metricsDescription">
-                        Metrics description page
-                    </Link>
-                </button>
-                <button className="custom-button">
-                    <Link href="/recommendations">
-                        Recommendations page
-                    </Link>
+                <button
+                    className="custom-button"
+                    onClick={() => provideToken()}
+                >
+                    Provide Spotify Token
                 </button>
                 <button disabled={true} className="custom-button" onClick={ () => refetchAudioFeatures() }>Fetch tracks features</button>
             </div>

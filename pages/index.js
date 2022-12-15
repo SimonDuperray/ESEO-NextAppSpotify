@@ -11,11 +11,13 @@ const Index = () => {
     {/* STATE DECLARATION */}
     const [user, setUser] = useState({});
     const [uidFromLocal, setUidFromLocal] = useState("");
+    const [dpNameFromLocal, setDpNameFromLocal] = useState("");
 
     {/* USE EFFECT DECLARATION */}
     useEffect(() => {
         setUidFromLocal(localStorage.getItem('uid'));
-        console.info("got uid from local storage");
+        setDpNameFromLocal(localStorage.getItem('dpName'));
+        console.info("got both uid and dpname from local storage");
     }, []);
 
     {/* AUTH SERVICES */}
@@ -28,6 +30,8 @@ const Index = () => {
                 setUser(response.user);
                 window.localStorage.setItem('uid', response.user.uid);
                 setUidFromLocal(window.localStorage.getItem('uid'));
+                window.localStorage.setItem('dpName', response.user.displayName);
+                setDpNameFromLocal(window.localStorage.getItem('dpName'));
             })
             .catch((err) => {
                 console.error(err.code);
@@ -37,6 +41,7 @@ const Index = () => {
         setUser({});
         setUidFromLocal("");
         window.localStorage.removeItem('uid');
+        window.localStorage.removeItem('dpName')
         if(window.localStorage.getItem('spotifyToken')) {
             window.localStorage.removeItem('spotifyToken');
         }
@@ -49,15 +54,19 @@ const Index = () => {
             });
     }
 
-    {/* FUNCTIONS DECLARATION */}
-    const getLocalUid = () => {
-        return localStorage.getItem('uid');
-    }
-
     return (
         <div>
             <header>
                 <Link href="/">TW-Analyze</Link>
+                <Link id="navbar-elem" href="/metricsDescription">
+                    Metrics Description
+                </Link>
+                <Link id="navbar-elem" href="/recommendations">
+                    Recommendations
+                </Link>
+                <Link id="navbar-elem" href="/about">
+                    About
+                </Link>
                 {
                     uidFromLocal ? (
                         <div>
@@ -79,7 +88,7 @@ const Index = () => {
                     uidFromLocal ? (
                         <Home
                             uid={user.uid}
-                            dpName={user.displayName}
+                            dpName={dpNameFromLocal}
                         />
                     ) : (
                         <div id="login-container">
