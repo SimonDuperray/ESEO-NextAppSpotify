@@ -68,7 +68,13 @@ const Recommendations = () => {
                 removedDuplicates.push(element);
             }
         });
+        let stringifiedTracks = JSON.stringify(removedDuplicates);
         setFilteredTracks(removedDuplicates);
+        const blob = new Blob([stringifiedTracks], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const link = document.getElementById("export-button");
+        link.download = "recommended-tracks.txt";
+        link.href = url;
 
         // refresh active class on un-picked selected metrics card
         for(let k=0; k<outMetrics.length; k++) {
@@ -122,6 +128,11 @@ const Recommendations = () => {
                     onClick={() => findBestTracks() }
                 >
                     { searchButtonLabel }
+                </button>
+                <button className="custom-button">
+                    <a id="export-button">
+                        Export recommandations
+                    </a>
                 </button>
                 <h4 id="metrics-tag"></h4>
                 <div className="simple-track-cards-container">

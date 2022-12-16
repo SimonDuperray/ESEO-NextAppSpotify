@@ -262,6 +262,10 @@ div.recommendation-metric-card > p {
   margin: 5px;
 }
 
+a#export-button {
+  font-size: 13px;
+}
+
 /* SIMPLE TRACK CARD */
 div.simple-track-cards-container {
   display: flex;
