@@ -68,7 +68,23 @@ const Recommendations = () => {
                 removedDuplicates.push(element);
             }
         });
-        let stringifiedTracks = JSON.stringify(removedDuplicates);
+
+        let stringifiedTracks = "These is your favorite recommended tracks !\n\n";
+        for(let i=0; i<removedDuplicates.length; i++) {
+            stringifiedTracks += `${i+1}. ${removedDuplicates[i]['title']} by ${removedDuplicates[i]['artist']}\n`;
+            stringifiedTracks += `Metrics:\n`;
+            stringifiedTracks += `Acousticness: ${removedDuplicates[i]['acousticness']}`;
+            stringifiedTracks += `Danceability: ${removedDuplicates[i]['danceability']}`;
+            stringifiedTracks += `Energy: ${removedDuplicates[i]['energy']}`;
+            stringifiedTracks += `Instrumentalness: ${removedDuplicates[i]['instrumentalness']}`;
+            stringifiedTracks += `Liveness: ${removedDuplicates[i]['liveness']}`;
+            stringifiedTracks += `Loudness: ${removedDuplicates[i]['loudness']}`;
+            stringifiedTracks += `Speechiness: ${removedDuplicates[i]['speechiness']}`;
+            stringifiedTracks += `Tempo: ${removedDuplicates[i]['tempo']}`;
+            stringifiedTracks += `Valence: ${removedDuplicates[i]['valence']}`;
+            stringifiedTracks += "\n\n";
+        }
+
         setFilteredTracks(removedDuplicates);
         const blob = new Blob([stringifiedTracks], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
