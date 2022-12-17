@@ -37,6 +37,14 @@ header > * {
   margin-left: 2%;
 }
 
+#navbar-elem {
+  font-size: 90%;
+}
+
+#navbar-elem:hover {
+  text-decoration: underline;
+}
+
 /* FOOTER */
 footer {
   margin: 30px 0;
@@ -95,7 +103,7 @@ div.track-card {
 }
 
 div.track-card:hover {
-  cursor: pointer;
+  cursor: default;
   opacity: 1;
 }
 
@@ -112,6 +120,7 @@ div.track-card img {
   border-left: 1px solid #000;
   -webkit-box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
   box-shadow: -6px 11px 26px 5px rgba(0,0,0,0.7);
+  border-radius: 0 5px;
 }
 
 div.track-card > p > span.mini-title {
@@ -142,6 +151,11 @@ div.metric-card > p {
 }
 
 /* METRIC DESCRIPTION */
+div#metrics-description {
+  width: 90vw;
+  margin: auto;
+}
+
 div.metrics-description-cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -213,7 +227,7 @@ div.graph-container {
 
 /* RECOMMENDATIONS PAGE */
 div.recommendations-container {
-  height: 100vh;
+  height: auto;
   width: 90vw;
   margin: auto;
 }
@@ -248,6 +262,10 @@ div.recommendation-metric-card > p {
   margin: 5px;
 }
 
+a#export-button {
+  font-size: 13px;
+}
+
 /* SIMPLE TRACK CARD */
 div.simple-track-cards-container {
   display: flex;
@@ -275,6 +293,40 @@ div.simple-track-card:hover {
 }
 
 div.simple-track-card > p.simple-track-card-title:hover {
+  text-decoration: underline;
+}
+
+/* ABOUT PAGE */
+.about-container {
+  width: 80vw;
+  margin: auto;
+  height: 100vh;
+}
+
+/* developers cards section */
+div.devs-cards-container {
+  display: flex;
+}
+
+div.dev-card {
+  border: 2px solid rgba(63, 64, 69, 1);
+  border-radius: 5px;
+  padding: 10px 50px;
+  margin: 10px;
+  text-align: center;
+  transition: .5s;
+}
+
+div.dev-card:hover {
+  background-color: rgba(63, 64, 69, 1);
+}
+
+div.dev-card > p {
+  margin: 15px 0 0 0;
+}
+
+div.dev-card > a:hover {
+  cursor: pointer;
   text-decoration: underline;
 }
 
