@@ -3,20 +3,23 @@ import {doc, setDoc, getDocs, getFirestore, collection} from "firebase/firestore
 import { app } from "../config/firebaseConfig";
 import {
     Chart as ChartJS,
-    BarElement,
+    LineElement,
+    PointElement,
     CategoryScale,
     LinearScale,
     Tooltip,
     Legend
 } from "chart.js";
 import TrackCard from "./cards/TrackCard";
-import Link from "next/link";
 import { outTheWeekndAudioFeatures } from "../data/the_weeknd_audio_features";
 import { outTracks } from "../data/tracks";
+import { outMetrics } from "../data/metrics";
+import { Line } from 'react-chartjs-2';
 
 // instantiate new ChartJS Component
 ChartJS.register(
-    BarElement,
+    LineElement,
+    PointElement,
     CategoryScale,
     LinearScale,
     Tooltip,
@@ -147,6 +150,62 @@ const Home = (props) => {
 
     const dpNameFromLocal = window.localStorage.getItem('dpName');
 
+    const colors = [
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 99, 132, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 205, 86, 1)',
+        'rgba(201, 203, 207, 1)'
+    ]
+
+    const buildDatasetsWithoutTempo = () => {
+        let dts = [];
+        for(let i=0; i<outMetrics.length; i++) {
+            if(outMetrics[i] !== "tempo" && outMetrics[i] !== "loudness") {
+                let mets = [];
+                for(let j=0; j<outTheWeekndAudioFeatures.length; j++) {
+                    mets.push(outTheWeekndAudioFeatures[j][outMetrics[i]]);
+                }
+                dts.push({
+                    label: outMetrics[i],
+                    data: mets,
+                    fill: false,
+                    borderColor: colors[i],
+                    tension: 0.1
+                });
+            }
+        }
+        return dts;
+    }
+
+    const buildDatasetTempo = () => {
+        let tempod = [];
+
+        for(let j=0; j<outTheWeekndAudioFeatures.length; j++){
+            tempod.push(outTheWeekndAudioFeatures[j]['tempo']);
+        }
+
+        return [{
+            label: 'Tempo',
+            data: tempod,
+            fill: false,
+            borderColor: colors[0],
+            tension: 0.1
+        }];
+    }
+
+    const lineChartDataWithoutTempo = {
+        labels: [...Array(30).keys()],
+        datasets: buildDatasetsWithoutTempo()
+    };
+
+    const lineChartDataWithTempo = {
+        labels: [...Array(30).keys()],
+        datasets: buildDatasetTempo()
+    };
+
     return (
         <div>
             <h1>Welcome { dpNameFromLocal } !</h1>
@@ -181,7 +240,22 @@ const Home = (props) => {
                 }
             </section>
             <section id="ana_metrics">
-                <p>Main graphs</p>
+                <h2>Setlist metrics evolution through the concert</h2>
+                <p>The following graph represents the evolution of each metric through the concert.</p>
+                <p>You can click on the metric you want to remove it from the graph.</p>
+                <div className="graph-container">
+                    <Line
+                        data={ lineChartDataWithoutTempo }
+                    />
+                </div>
+                <div
+                    className="graph-container"
+                    id="tempo-graph"
+                >
+                    <Line
+                        data={ lineChartDataWithTempo }
+                    />
+                </div>
             </section>
         </div>
     )
