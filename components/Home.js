@@ -127,7 +127,7 @@ const Home = (props) => {
     const getCorrespondingMetrics = (trackId) => {
         let toReturn = null;
         for(let i = 0; i < outTheWeekndAudioFeatures.length; i++) {
-            if(outTheWeekndAudioFeatures[i]['id'] && (outTheWeekndAudioFeatures[i]['id'] == trackId)) {
+            if(outTheWeekndAudioFeatures[i]['id'] && (outTheWeekndAudioFeatures[i]['id'] === trackId)) {
                 toReturn = outTheWeekndAudioFeatures[i];
                 return toReturn;
             }
