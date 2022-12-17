@@ -218,12 +218,13 @@ div.description-card > h3:hover {
 /* GRAPH ELEMENTS */
 div.graph-container {
   text-align: center;
-  width: 70%;
-  margin: auto;
-  height: 400px;
+  width: 85%;
+  margin: 20px auto;
+  height: 600px;
   border: 1px solid #fff;
   padding: 5px;
 }
+
 
 /* RECOMMENDATIONS PAGE */
 div.recommendations-container {
