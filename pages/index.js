@@ -6,6 +6,7 @@ import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import {app} from "../config/firebaseConfig";
 import Footer from "../components/Footer";
 import { LogoutOutlined } from "@ant-design/icons";
+import ReallySimpleHeader from "../components/ReallySimpleHeader";
 
 const Index = () => {
     {/* STATE DECLARATION */}
@@ -56,51 +57,52 @@ const Index = () => {
 
     return (
         <div>
-            <header>
-                <Link href="/">TW-Analyze</Link>
-                <Link id="navbar-elem" href="/metricsDescription">
-                    Metrics Description
-                </Link>
-                <Link id="navbar-elem" href="/recommendations">
-                    Recommendations
-                </Link>
-                <Link id="navbar-elem" href="/about">
-                    About
-                </Link>
-                {
-                    uidFromLocal ? (
-                        <div>
-                            <button
-                                className="custom-button"
-                                id="sign-out-button"
-                                onClick={ signOut }
-                            >
-                                <LogoutOutlined />
-                            </button>
+            {
+                uidFromLocal ? (
+                    <div>
+                        <header>
+                            <Link href="/">TW-Analyze</Link>
+                            <Link id="navbar-elem" href="/metricsDescription">
+                                Metrics Description
+                            </Link>
+                            <Link id="navbar-elem" href="/recommendations">
+                                Recommendations
+                            </Link>
+                            <Link id="navbar-elem" href="/about">
+                                About
+                            </Link>
+                                <div>
+                                    <button
+                                        className="custom-button"
+                                        id="sign-out-button"
+                                        onClick={ signOut }
+                                    >
+                                        <LogoutOutlined />
+                                    </button>
+                                </div>
+                        </header>
+                        <div className="global-container">
+                            <Home
+                                uid={user.uid}
+                                dpName={dpNameFromLocal}
+                            />
                         </div>
-                    ) : (
-                        <></>
-                    )
-                }
-            </header>
-            <div className="global-container">
-                {
-                    uidFromLocal ? (
-                        <Home
-                            uid={user.uid}
-                            dpName={dpNameFromLocal}
-                        />
-                    ) : (
-                        <div id="login-container">
-                            <h3 id="login-text">Welcome on TW-Analyze app ! You first need to authenticate with Google before going further !</h3>
-                            <button className="gbutton" onClick={ googleSignUp }>
-                                <GoogleOutlined className="gicon" />
-                                Sign Up with Google
-                            </button>
+                    </div>
+                ) : (
+                    <div>
+                        <ReallySimpleHeader />
+                        <div className="global-container">
+                            <div id="login-container">
+                                <h3 id="login-text">Welcome on TW-Analyze app ! You first need to authenticate with Google before going further !</h3>
+                                <button className="gbutton" onClick={ googleSignUp }>
+                                    <GoogleOutlined className="gicon" />
+                                    Sign Up with Google
+                                </button>
+                            </div>
                         </div>
-                    )
-                }
-            </div>
+                    </div>
+                )
+            }
             <Footer />
         </div>
     )
