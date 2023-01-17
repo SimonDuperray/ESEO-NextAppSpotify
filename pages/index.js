@@ -31,7 +31,7 @@ const Index = () => {
             const querySnaphsot = await getDocs(collection(getFirestore(app), "the_weeknd_audio_features"));
             querySnaphsot.forEach((twadItem) => {
                 twadBuffer.push(twadItem.data());
-            })
+            });
             setTwad(twadBuffer);
         }
         fetchTwad()
