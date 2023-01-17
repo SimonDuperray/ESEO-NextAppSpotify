@@ -27,6 +27,7 @@ const Index = () => {
 
     useEffect(() => {
         const fetchTwad = async () => {
+            // test to build and deploy
             let twadBuffer = [];
             const querySnaphsot = await getDocs(collection(getFirestore(app), "the_weeknd_audio_features"));
             querySnaphsot.forEach((twadItem) => {
