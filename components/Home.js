@@ -11,8 +11,6 @@ import {
     Legend
 } from "chart.js";
 import TrackCard from "./cards/TrackCard";
-import { outTheWeekndAudioFeatures } from "../data/the_weeknd_audio_features";
-import { outTracks } from "../data/tracks";
 import { outMetrics } from "../data/metrics";
 import { Line } from 'react-chartjs-2';
 
@@ -41,6 +39,9 @@ const Home = (props) => {
         }]
     });
     const [spotifyToken, setSpotifyToken] = useState('');
+
+    const outTheWeekndAudioFeatures = props.twadProps;
+    const outTracks = props.tracksProps;
 
     const id = useId();
 
